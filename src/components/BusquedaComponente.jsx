@@ -10,10 +10,9 @@ const BusquedaComponente = () => {
   const showData = async () => {
     const response = await fetch(URL);
     const data = await response.json();
-    console.log(showData);
+    
   }
 
-  showData();
   useEffect(() => {
     showData();
   }, [])
@@ -24,12 +23,47 @@ const BusquedaComponente = () => {
     .then(data => setusers(data))
   }, [])
 
+  const buscar = (e) => {
+    setSearch(e.target.value);
+  }
   
+ /*let resultado = [];
+  if(!search){
+    resultado = users;
+  }else{
+    resultado = users.filter( (dato) => 
+      dato.name.toLowerCase().includes(search.toLocaleLowerCase())
+    )
+  }*/
   
-  
+  const resultado = !search ? users : users.filter( (dato) => 
+      dato.name.toLowerCase().includes(search.toLocaleLowerCase())
+    )
   
   return (
-    <div>BusquedaComponente</div>
+    <div>
+
+    <input value={search} onChange={buscar} type="text" placeholder="Buscar" className='form-control'/>
+
+      <table className='table table-striped table-hover mt-5 shadow-lg text-center'>
+      <thead>
+
+        <tr className='table-warning'>
+          <th>Nombre</th>
+          <th>Usuario</th>
+        </tr>
+      </thead>
+      <tbody className='table-light table-dark'>
+        {resultado.map((user) => (
+          <tr key={user.id}>
+            <td>{user.name}</td>
+            <td>{user.username}</td>
+          </tr>
+        ))}
+      </tbody>
+      </table>
+
+    </div>
   )
 }
 
