@@ -27,15 +27,7 @@ const BusquedaComponente = () => {
     setSearch(e.target.value);
   }
   
- /*let resultado = [];
-  if(!search){
-    resultado = users;
-  }else{
-    resultado = users.filter( (dato) => 
-      dato.name.toLowerCase().includes(search.toLocaleLowerCase())
-    )
-  }*/
-  
+ 
   const resultado = !search ? users : users.filter( (dato) => 
       dato.name.toLowerCase().includes(search.toLocaleLowerCase())
     )
